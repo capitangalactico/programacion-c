@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1452724888 source:i:\algoritmia\example\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
