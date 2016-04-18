@@ -8,7 +8,8 @@ typedef struct Colas {
 } Cola;
 
 int empty(Cola *);
-int remove(Cola *);
+int quitar(Cola *);
 void insert(Cola *, int);
+int full(Cola *cola);
 
 #endif

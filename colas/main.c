@@ -4,7 +4,7 @@
 
 int main(void) {
   Cola cola;
-  pila.front= q.rear = size-1;
+  cola.frente= cola.atras = size-1;
   /*
   printf("Empty %d\n", empty(&pila));
   push(&pila, 1);

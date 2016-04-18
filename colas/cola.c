@@ -19,13 +19,14 @@ void insert(Cola *cola, int x){
   }
   cola->items[cola->atras] = x;
 }
-int remove(Cola *cola) {
+
+int quitar(Cola *cola) {
   if(empty(cola)){
     //esta vacia
     return(0);
   }
   if(cola->frente == size-1) {
-    cola->frente == 0;
+    cola->frente = 0;
   } else {
     (cola->frente)++;
   }
@@ -34,11 +35,11 @@ int remove(Cola *cola) {
 
 int full(Cola *cola) {
   if(cola->atras == size - 1) {
-    if(cola->adelante == 0) {
+    if(cola->frente == 0) {
       return 1;
     }
   }
-  if((cola->atras)+1 == cola->adelante) {
+  if((cola->atras)+1 == cola->frente) {
     return 1;
   }
   return 0;
