@@ -7,6 +7,9 @@ int empty(Cola *cola) {
   }
   return 0;
 }
+void init(Cola *cola) {
+  cola->frente = cola->atras = size-1;
+}
 
 void insert(Cola *cola, int x){
   if(cola->atras == size-1) {
