@@ -26,10 +26,12 @@ typedef struct Tablas {
 } Tabla;
 
 void mostrar_contenido(FILE *);
-void guardar_letra(Palabra *, char);
-void guardar_palabra(Tabla *, Palabra *, int);
-void iniciar_palabra(Palabra *);
 void iniciar_tabla_hash(Tabla *);
+void iniciar_palabra(Palabra *);
+int validar_letra(int);
+void guardar_letra(Palabra *, char);
+void almacenar_palabra(Tabla *, Palabra *, int *);
+void guardar_palabra(Tabla *, Palabra *, int);
 int funcion_hash(int);
 void mostar_tabla(Tabla *);
 
