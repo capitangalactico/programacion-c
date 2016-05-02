@@ -14,15 +14,10 @@ void mostrar_conetenido(FILE *file) {
     iniciar_tabla_hash(&tabla_hash);
     while (feof(file) == 0) {
         letra = fgetc(file);
-        if(letra == 10) {
-            letra = ' ';
-        }
-        if(letra != ' ') {
-            if(letra != 10 && letra !=-1){
-                suma += letra;
-                //printf("%c\n", letra);
-                guardar_letra(&aux_palabra, letra);
-            }
+        //Metodo que valide
+        if((letra>64 && letra<91) || (letra>96 && letra<123) || (letra>129 && letra<166) || (letra==130)) {
+            suma += letra;
+            guardar_letra(&aux_palabra, letra);
         } else {
             //Guadrdar palabra
             guardar_palabra(&tabla_hash, &aux_palabra, suma);
@@ -64,15 +59,22 @@ void iniciar_palabra(Palabra *palabra) {
 }
 
 void iniciar_tabla_hash(Tabla *tabla) {
+    int i = 0;
+    while (i<32) {
+        tabla->array_cubetas[i].primero = NULL;
+        tabla->array_cubetas[i].ultimo = NULL;
+        i++;
+    }
     tabla = NULL;
 }
 
 void guardar_palabra(Tabla *tabla, Palabra *palabra, int suma) {
+    if(suma == 0)
+        return;
     int indice = funcion_hash(suma);
-    //printf("Incice %d\n", indice);
     ListaPalabras *aux_lista = NULL;
-
     aux_lista = (ListaPalabras*) malloc(sizeof(ListaPalabras));
+    aux_lista->siguiente = NULL;
     if(aux_lista == NULL)
         exit(0);
 
@@ -85,29 +87,37 @@ void guardar_palabra(Tabla *tabla, Palabra *palabra, int suma) {
         tabla->array_cubetas[indice].ultimo->siguiente = aux_lista;
     }
     tabla->array_cubetas[indice].ultimo = aux_lista;
-    //printf("Palabra: %c\n", tabla->array_cubetas[indice].ultimo->palabra.inicio->elemento);
 }
 
 int funcion_hash(int suma) {
     return (suma%32);
 }
-
+//IMprime 2 saltos de linea
 void mostar_tabla(Tabla *tabla) {
-    printf("**\n");
     int i;
+    int contador = 0;
+    Palabra aux_palabra;
+    ListaPalabras *aux_lista;
+    Letra *aux_letra;
     for(i = 0; i<32; i++) {
-        printf("Cubeta %d:\n", i);
-        ListaPalabras *aux_lista = tabla->array_cubetas[i].primero; //incides
+        aux_lista = tabla->array_cubetas[i].primero; //indices
+        printf("\n---Cubeta %d---\n", i);
         while(aux_lista != NULL){
-            Palabra aux_palabra = aux_lista->palabra;
-            Letra *aux_letra = aux_palabra.inicio;
-            while(aux_letra != NULL) {
-                printf("%c", aux_letra->elemento);
-                aux_letra = aux_letra->siguiente;
+            contador++;
+            if(contador<4) {
+                aux_palabra = aux_lista->palabra;
+                aux_letra = aux_palabra.inicio;
+                printf("-");
+                while(aux_letra != NULL) {
+                    printf("%c", aux_letra->elemento);
+                    aux_letra = aux_letra->siguiente;
+                }
+                printf(" ");
+                printf("\n");
             }
-            printf(" ");
             aux_lista = aux_lista->siguiente;
-            printf("\n");
         }
+        printf("Numero de palabras encontradas: %d\n", contador);
+        contador = 0;
     }
 }
