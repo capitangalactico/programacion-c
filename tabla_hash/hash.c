@@ -13,13 +13,14 @@ void mostrar_conetenido(FILE *file) {
     iniciar_tabla_hash(&tabla_hash);
     while (feof(file) == 0) {
         letra = fgetc(file);
-        //Metodo que valide
         if(validar_letra(letra)) {
             suma += letra;
             guardar_letra(&aux_palabra, letra);
         } else {
+            // Cuando se acaba la palabra la guarda
             almacenar_palabra(&tabla_hash, &aux_palabra, &suma);
         }
+        // Para almacenar la ultima palabra
         if(feof(file) != 0){
             almacenar_palabra(&tabla_hash, &aux_palabra, &suma);
         }
@@ -42,7 +43,7 @@ void iniciar_tabla_hash(Tabla *tabla) {
     }
     tabla = NULL;
 }
-
+// Se valida deacuerdo a su valor ascii
 int validar_letra(int letra_ascii) {
     // Mayusculas
     if(letra_ascii>64 && letra_ascii<91)
@@ -59,7 +60,7 @@ int validar_letra(int letra_ascii) {
 
     return 0;
 }
-
+// Se guarda letra a letra en una lista
 void guardar_letra(Palabra *palabra, char letra_caracter) {
     Letra *aux_letra = NULL;
     aux_letra = (Letra*) malloc(sizeof(Letra));
@@ -76,7 +77,6 @@ void guardar_letra(Palabra *palabra, char letra_caracter) {
         palabra->fin->siguiente = aux_letra;
     }
     palabra->fin = aux_letra;
-
 }
 
 void almacenar_palabra(Tabla *tabla, Palabra *palabra, int *suma) {
@@ -84,7 +84,7 @@ void almacenar_palabra(Tabla *tabla, Palabra *palabra, int *suma) {
     iniciar_palabra(palabra);
     *suma = 0;
 }
-
+// Se guarda la lista de letras en una lista de palabras
 void guardar_palabra(Tabla *tabla, Palabra *palabra, int suma) {
     if(suma == 0)
         return; // Evita guardar "palabras" si detecta algo que no es una letra
@@ -93,7 +93,7 @@ void guardar_palabra(Tabla *tabla, Palabra *palabra, int suma) {
     aux_lista = (ListaPalabras*) malloc(sizeof(ListaPalabras));
     aux_lista->siguiente = NULL;
     if(aux_lista == NULL)
-        exit(0);
+        exit(0); // Se checa la memoria
 
     aux_lista->palabra = *palabra;
     aux_lista->siguiente = NULL;
@@ -109,7 +109,7 @@ void guardar_palabra(Tabla *tabla, Palabra *palabra, int suma) {
 int funcion_hash(int suma) {
     return (suma%32);
 }
-
+// Mustra las tres primeras palabras de cada cubeta y el total de palabras
 void mostar_tabla(Tabla *tabla) {
     int i;
     int contador = 0;
