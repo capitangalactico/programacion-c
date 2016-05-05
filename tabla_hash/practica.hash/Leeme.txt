@@ -1,0 +1,3 @@
+Barrera Pérez Carlos Tonatihu: 2016630023
+
+Nota: el archivo test.txt es con el que hice las pruebas
