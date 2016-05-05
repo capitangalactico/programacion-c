@@ -12,6 +12,6 @@ int main(int argc, char const *argv[]) {
     exit(0);
   }
 
-  mostrar_conetenido(file);
+  mostrar_contenido(file);
   return 0;
 }

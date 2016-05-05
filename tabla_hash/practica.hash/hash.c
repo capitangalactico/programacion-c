@@ -15,7 +15,7 @@
 
 Tabla tabla_hash;
 
-void mostrar_conetenido(FILE *file) {
+void mostrar_contenido(FILE *file) {
     char letra = ' ';
     Palabra aux_palabra;
     int suma = 0;
