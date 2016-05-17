@@ -12,9 +12,9 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include "arbol.h"
 
 int main(int argc, char const *argv[]) {
+    printf("main.c");
     return 0;	
 }

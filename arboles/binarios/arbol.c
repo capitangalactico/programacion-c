@@ -56,9 +56,25 @@ int crearArbol(struct Arbol **nuevo) {
 }
 
 void mostar(struct Arbol *un_arbol){
-    /*validar*/
+    if(un_arbol == NULL) {
+    	return;
+    }
     printf("%d ", un_arbol->elemento);
     mostar(un_arbol->derecha);
     mostar(un_arbol->izquierda);
 	
+}
+int buscar(struct Arbol *un_arbol, int dato){
+    if(un_arbol==NULL){
+        return -1;
+    }
+    if(dato==un_arbol->elemento){
+        return 1;
+    }
+    if(dato > un_arbol->elemento){
+	return buscar(un_arbol->derecha, dato);
+    } else {
+        return buscar(un_arbol->izquierda, dato);
+    }
+    return 0;
 }

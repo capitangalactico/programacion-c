@@ -26,7 +26,14 @@ struct Arbol{
 int insertar(struct Arbol **, int);
 int crearArbol(struct Arbol **);
 void mostrar(struct Arbol *);
-int buscar();
+int buscar(struct Arbol *, int);
 int eliminar();
+/*recuersivas*/
+int carlcular_altura();
+int calcular_balance();
+/*no*/
+int rot_izq();
+int rot_der();
+int doble_rot();
 
 #endif
