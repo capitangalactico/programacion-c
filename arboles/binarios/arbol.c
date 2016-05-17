@@ -54,3 +54,11 @@ int crearArbol(struct Arbol **nuevo) {
     *nuevo = auxiliar;
     return 1;
 }
+
+void mostar(struct Arbol *un_arbol){
+    /*validar*/
+    printf("%d ", un_arbol->elemento);
+    mostar(un_arbol->derecha);
+    mostar(un_arbol->izquierda);
+	
+}
