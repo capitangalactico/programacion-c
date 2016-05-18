@@ -24,7 +24,7 @@ struct Arbol{
 };
 
 int insertar(struct Arbol **, int);
-int crearArbol(struct Arbol **);
+int crearArbol(struct Arbol **, int);
 void mostrar(struct Arbol *);
 int buscar(struct Arbol *, int);
 int eliminar();

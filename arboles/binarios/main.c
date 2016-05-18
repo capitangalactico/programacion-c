@@ -15,6 +15,14 @@
 #include "arbol.h"
 
 int main(int argc, char const *argv[]) {
-    printf("main.c");
-    return 0;	
+    struct Arbol *arbol_vacio = NULL;
+    mostrar(arbol_vacio);
+    insertar(&arbol_vacio, 1);
+    insertar(&arbol_vacio, 2);
+    insertar(&arbol_vacio, 0);
+    insertar(&arbol_vacio, -2);
+    insertar(&arbol_vacio, -1);
+    insertar(&arbol_vacio, -3);
+    mostrar(arbol_vacio);
+    return 0;
 }

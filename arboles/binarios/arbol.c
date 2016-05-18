@@ -17,31 +17,30 @@ si el valor es menor al elemento lo manda a la izq y a la derecha en caso contra
 */
 int insertar(struct Arbol **arbol, int valor) {
     struct Arbol *arbol_nuevo = NULL;
-
+    if(arbol == NULL) {
+        return -1;
+    }
+    crearArbol(&arbol_nuevo, valor);
     if (*arbol == NULL) {
-        crearArbol(&arbol_nuevo);
-        arbol_nuevo->elemento = valor;
         *arbol = arbol_nuevo;
     }
-
-    crearArbol(&arbol_nuevo);
-    arbol_nuevo->elemento = valor;
-
     if (valor < ((*arbol)->elemento)) {
         if((*arbol)->izquierda != NULL) {
             insertar(&((*arbol)->izquierda), valor);
+        } else {
+            (*arbol)->izquierda = arbol_nuevo;
         }
-        (*arbol)->izquierda = arbol_nuevo;
-    } else {
+    } else if (valor > ((*arbol)->elemento)) {
         if((*arbol)->derecha != NULL) {
             insertar(&((*arbol)->derecha), valor);
+        } else {
+            (*arbol)->derecha = arbol_nuevo;
         }
-        (*arbol)->derecha = arbol_nuevo;
     }
     return 1;
 }
 
-int crearArbol(struct Arbol **nuevo) {
+int crearArbol(struct Arbol **nuevo, int valor) {
     struct Arbol *auxiliar = NULL;
     auxiliar = (struct Arbol*)malloc(sizeof(struct Arbol));
 
@@ -51,18 +50,19 @@ int crearArbol(struct Arbol **nuevo) {
 
     auxiliar->izquierda = NULL;
     auxiliar->derecha = NULL;
+    auxiliar->elemento = valor;
     *nuevo = auxiliar;
     return 1;
 }
 
-void mostar(struct Arbol *un_arbol){
+void mostrar(struct Arbol *un_arbol){
     if(un_arbol == NULL) {
     	return;
     }
     printf("%d ", un_arbol->elemento);
-    mostar(un_arbol->derecha);
-    mostar(un_arbol->izquierda);
-	
+    mostrar(un_arbol->derecha);
+    mostrar(un_arbol->izquierda);
+
 }
 int buscar(struct Arbol *un_arbol, int dato){
     if(un_arbol==NULL){
