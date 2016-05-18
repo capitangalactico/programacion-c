@@ -16,7 +16,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+// Puedo hacerlo mas facil y guardar al padre, si esta balanceado ese arbol y su altura
 struct Arbol{
     int elemento;
     struct Arbol *derecha;
@@ -34,6 +34,14 @@ int calcular_balance();
 /*no*/
 int rot_izq();
 int rot_der();
-int doble_rot();
+// guardamos la parte izq
+// guardamos la parte derecha de la izq
+// esa parte derecha ahora es la raiz
+// la parte izq de nuestra anterior raiz es ka derecha de la izq
+int doble_rot_derecha();
+//Primero una izq en el hijo y despues una derecha en el padre
+int doble_rot_izq();
+//primero una derecha en el hijo y despues una izq en el padre
+
 
 #endif
