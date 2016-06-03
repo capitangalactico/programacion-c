@@ -113,3 +113,21 @@ int rotar_izquierda(struct Arbol **arbol) {
     *arbol = sub_arbol_derecho;
     return 1;
 }
+
+int doble_rotacion_derecha(struct Arbol **arbol) {
+    if(arbol == NULL) {
+        return 0;
+    }
+    rotar_izquierda(&((*arbol)->izquierda));
+    rotar_derecha(arbol);
+    return 1;
+}
+
+int doble_rotacion_izquierda(struct Arbol **arbol) {
+    if(arbol == NULL) {
+        return 0;
+    }
+    rotar_derecha(&((*arbol)->derecha));
+    rotar_izquierda(arbol);
+    return 1;
+}

@@ -37,12 +37,12 @@ int rotar_izquierda(struct Arbol **);
 int rotar_derecha(struct Arbol **);
 // guardamos la parte izq
 // guardamos la parte derecha de la izq
-// esa parte derecha ahora es la raiz
-// la parte izq de nuestra anterior raiz es ka derecha de la izq
-int doble_rotacion_derecha();
+// esa parte derecha ahora es la izquierda de la raiz
+// la  parte derecha de la izq es la raiz
+// la raiz ahora es la izq
+int doble_rotacion_derecha(struct Arbol **);
 //Primero una izq en el hijo y despues una derecha en el padre
-int doble_rotacion_izq();
+int doble_rotacion_izquierda(struct Arbol **);
 //primero una derecha en el hijo y despues una izq en el padre
-
 
 #endif

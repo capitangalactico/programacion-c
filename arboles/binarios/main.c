@@ -31,17 +31,23 @@ int main(int argc, char const *argv[]) {
     // insertar(&arbol_prueba, -20);
 
     // rotacion izquierda
-    insertar(&arbol_prueba, 1);
+    // insertar(&arbol_prueba, 1);
+    // insertar(&arbol_prueba, 5);
+    // insertar(&arbol_prueba, -5);
+    // insertar(&arbol_prueba, 10);
+    // insertar(&arbol_prueba, 3);
+    // insertar(&arbol_prueba, 9);
+
+    //doble_rotacion_izq
     insertar(&arbol_prueba, 5);
-    insertar(&arbol_prueba, -5);
-    insertar(&arbol_prueba, 10);
-    insertar(&arbol_prueba, 3);
-    insertar(&arbol_prueba, 9);
+    insertar(&arbol_prueba, 7);
+    insertar(&arbol_prueba, 6);
 
     mostrar(arbol_prueba);
     printf("Encontro: %d\n", buscar(arbol_prueba, 1));
     printf("Altura: %d\n", altura_total(arbol_prueba));
-    rotar_izquierda(&arbol_prueba);
+    doble_rotacion_izquierda(&arbol_prueba);
     mostrar(arbol_prueba);
+    printf("Altura: %d\n", altura_total(arbol_prueba));
     return 0;
 }
