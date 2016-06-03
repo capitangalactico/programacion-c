@@ -101,3 +101,15 @@ int rotar_derecha(struct Arbol **arbol) {
     *arbol = sub_arbol_izquierdo;
     return 1;
 }
+
+int rotar_izquierda(struct Arbol **arbol) {
+    if(arbol == NULL) {
+        return -1;
+    }
+    struct Arbol *sub_arbol_derecho = (*arbol)->derecha;
+    struct Arbol *sub_arbol_derecho_izquierdo = sub_arbol_derecho->izquierda;
+    (*arbol)->derecha = sub_arbol_derecho_izquierdo;
+    sub_arbol_derecho->izquierda = *arbol;
+    *arbol = sub_arbol_derecho;
+    return 1;
+}

@@ -33,7 +33,7 @@ int calcular_altura(struct Arbol *);
 int altura_total(struct Arbol *);
 int calcular_balance();
 /*no*/
-int rotar_izq();
+int rotar_izquierda(struct Arbol **);
 int rotar_derecha(struct Arbol **);
 // guardamos la parte izq
 // guardamos la parte derecha de la izq
