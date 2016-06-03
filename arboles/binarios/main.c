@@ -15,14 +15,24 @@
 #include "arbol.h"
 
 int main(int argc, char const *argv[]) {
-    struct Arbol *arbol_vacio = NULL;
-    mostrar(arbol_vacio);
-    insertar(&arbol_vacio, 1);
-    insertar(&arbol_vacio, 2);
-    insertar(&arbol_vacio, 0);
-    insertar(&arbol_vacio, -2);
-    insertar(&arbol_vacio, -1);
-    insertar(&arbol_vacio, -3);
-    mostrar(arbol_vacio);
+    struct Arbol *arbol_prueba = NULL;
+    mostrar(arbol_prueba);
+    insertar(&arbol_prueba, 20);
+    insertar(&arbol_prueba, 30);
+    insertar(&arbol_prueba, 10);
+    insertar(&arbol_prueba, 40);
+    insertar(&arbol_prueba, 25);
+    insertar(&arbol_prueba, 0);
+    insertar(&arbol_prueba, 15);
+    insertar(&arbol_prueba, 17);
+    insertar(&arbol_prueba, 5);
+    insertar(&arbol_prueba, -10);
+    insertar(&arbol_prueba, -20);
+
+    mostrar(arbol_prueba);
+    printf("Encontro: %d\n", buscar(arbol_prueba, 1));
+    printf("Altura: %d\n", altura_total(arbol_prueba));
+    rotar_derecha(&arbol_prueba);
+    mostrar(arbol_prueba);
     return 0;
 }

@@ -22,25 +22,26 @@ struct Arbol{
     struct Arbol *derecha;
     struct Arbol *izquierda;
 };
-
+/*funciones principales*/
 int insertar(struct Arbol **, int);
-int crearArbol(struct Arbol **, int);
+int crear_arbol(struct Arbol **, int);
 void mostrar(struct Arbol *);
 int buscar(struct Arbol *, int);
 int eliminar();
-/*recuersivas*/
-int carlcular_altura();
+/*funciones auxiliares*/
+int calcular_altura(struct Arbol *);
+int altura_total(struct Arbol *);
 int calcular_balance();
 /*no*/
-int rot_izq();
-int rot_der();
+int rotar_izq();
+int rotar_derecha(struct Arbol **);
 // guardamos la parte izq
 // guardamos la parte derecha de la izq
 // esa parte derecha ahora es la raiz
 // la parte izq de nuestra anterior raiz es ka derecha de la izq
-int doble_rot_derecha();
+int doble_rotacion_derecha();
 //Primero una izq en el hijo y despues una derecha en el padre
-int doble_rot_izq();
+int doble_rotacion_izq();
 //primero una derecha en el hijo y despues una izq en el padre
 
 
