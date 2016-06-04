@@ -31,7 +31,7 @@ int insertar(struct Arbol **arbol, int valor) {
     } else if (valor > ((*arbol)->elemento)) {
         insertar(&((*arbol)->derecha), valor);
     } else if(valor == ((*arbol)->elemento)){
-        return 0; // repetido
+        return 1; // repetido, permanece igual
     }
     balancear_arbol(arbol);
     return 1;
@@ -57,14 +57,13 @@ void mostrar(struct Arbol *un_arbol){
     printf("%d ", un_arbol->elemento);
     mostrar(un_arbol->derecha);
     mostrar(un_arbol->izquierda);
-
 }
 
 int buscar(struct Arbol *un_arbol, int dato){
-    if(un_arbol==NULL){
-        return 0;
+    if(un_arbol == NULL){
+        return 0; // No se encontro
     }
-    if(dato==un_arbol->elemento){
+    if(dato == un_arbol->elemento){
         return 1;
     }
     if(dato > un_arbol->elemento){
@@ -79,16 +78,17 @@ int eliminar(struct Arbol **un_arbol, int dato){
     if(*un_arbol==NULL){
         return -1;
     }
-    //printf("Esta en: %d\n", (*un_arbol)->elemento);
     if(dato == (*un_arbol)->elemento){
         if ((*un_arbol)->derecha == NULL) {
             if ((*un_arbol)->izquierda == NULL) {
+                free((*un_arbol));
                 *un_arbol = NULL;
             } else {
                 *un_arbol = (*un_arbol)->izquierda;
             }
         } else if ((*un_arbol)->izquierda == NULL) {
             if ((*un_arbol)->derecha == NULL) {
+                free((*un_arbol));
                 *un_arbol = NULL;
             } else {
                 *un_arbol = (*un_arbol)->derecha;
@@ -96,7 +96,7 @@ int eliminar(struct Arbol **un_arbol, int dato){
         } else {
             /* el derecho en inorden de la izquierda o el izquierdo en inorden de la derecha */
             struct Arbol *auxiliar = *un_arbol;
-            mover_arbol(&(*un_arbol)->derecha, &auxiliar);
+            recordenar_arbol(&(*un_arbol)->derecha, &auxiliar);
         }
     } else if(dato > (*un_arbol)->elemento){
         eliminar(&((*un_arbol)->derecha), dato);
@@ -107,12 +107,12 @@ int eliminar(struct Arbol **un_arbol, int dato){
     return 1;
 }
 
-int mover_arbol(struct Arbol **arbol, struct Arbol **auxiliar) {
+int recordenar_arbol(struct Arbol **arbol, struct Arbol **auxiliar) {
     if ((*arbol)->izquierda == NULL){
         (*auxiliar)->elemento = (*arbol)->elemento;
         *arbol = (*arbol)->derecha;
     }else
-        mover_arbol(&(*arbol)->izquierda, auxiliar);
+        recordenar_arbol(&(*arbol)->izquierda, auxiliar);
     return 1;
 }
 
@@ -149,21 +149,14 @@ int balancear_arbol(struct Arbol **arbol) {
     if (estado_balanceo > 1) {
         if (calcular_balance((*arbol)->derecha) < 0) {
             rotar_doble_izquierda(arbol);
-            printf("doble iz\n");
         } else {
             rotar_izquierda(arbol);
-            printf("iz\n");
-
         }
     } else if(estado_balanceo < -1) {
         if (calcular_balance((*arbol)->izquierda) > 0) {
             rotar_doble_derecha(arbol);
-            printf("doble de\n");
-
         } else {
             rotar_derecha(arbol);
-            printf("de\n");
-
         }
     }
     return 1;

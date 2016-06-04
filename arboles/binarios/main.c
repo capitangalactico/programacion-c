@@ -13,27 +13,29 @@
 
 #include <stdio.h>
 #include "arbol.h"
+#include <time.h>
 
 int main(int argc, char const *argv[]) {
     struct Arbol *arbol_prueba = NULL;
-    mostrar(arbol_prueba);
-    // rotacion derecha
-    insertar(&arbol_prueba, 20);
-    insertar(&arbol_prueba, 30);
-    insertar(&arbol_prueba, 10);
-    insertar(&arbol_prueba, 40);
-    insertar(&arbol_prueba, 25);
-    insertar(&arbol_prueba, 0);
-    insertar(&arbol_prueba, 15);
-    insertar(&arbol_prueba, 17);
-    insertar(&arbol_prueba, 5);
-    insertar(&arbol_prueba, -10);
-    insertar(&arbol_prueba, -20);
-
-    mostrar(arbol_prueba);
-    printf("Altura: %d\n", calcular_altura(arbol_prueba));
-    eliminar(&arbol_prueba, 20);
-    mostrar(arbol_prueba);
-    printf("Altura: %d\n", calcular_altura(arbol_prueba));
+    int numero = 0;
+    int i;
+    srand(time(NULL));
+    for (i = 0; i<20; i++){
+        numero = rand() % 21;
+        printf("El numero que se inserta es %d\n", numero);
+        insertar(&arbol_prueba, numero);
+        mostrar(arbol_prueba);
+    }
+    for (i = 0; i<3; i++){
+        numero = rand() % 21;
+        printf("El numero que se busca y se elimina es %d\n", numero);
+        if (buscar(arbol_prueba, numero)) {
+            printf("El numero: %d fue encontrado\n", numero);
+        } else {
+            printf("El numero: %d no fue encontrado\n", numero);
+        }
+        eliminar(&arbol_prueba, 20);
+        mostrar(arbol_prueba);
+    }
     return 0;
 }
